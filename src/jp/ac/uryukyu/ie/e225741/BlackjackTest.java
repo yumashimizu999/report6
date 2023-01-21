@@ -1,4 +1,4 @@
-package jp.ac.uryukyu.e225741;
+package jp.ac.uryukyu.ie.e225741;
 
 public class BlackjackTest {
     
