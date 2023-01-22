@@ -1,4 +1,4 @@
-package jp.ac.uryukyu.ie.e225741;
+import jp.ac.uryukyu.ie.e225741.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +45,7 @@ public class Main {
 
         while (true) {
             System.out.println("カードを追加する？Yes:y or No:n");
-            // キーボードの入力を受け付けて、変数strに代入する
+            // yes or noの処理
             Scanner scan = new Scanner(System.in);
             String str = scan.next();
             if ("n".equals(str)) {
@@ -58,6 +58,7 @@ public class Main {
                 System.out.println("あなたの" + playerHands + "枚目のカードは" + Blackjack.toRank(player.get(playerHands - 1)));
                 playerPoint = Blackjack.sumPoint(player);
                 System.out.println("現在の合計は" + playerPoint);
+                // プレイヤーのバーストチェック
                 if (Blackjack.isBusted(playerPoint)) {
                     System.out.println("バーストにより敗北");
                     return;
@@ -78,7 +79,7 @@ public class Main {
                 // 山札を一枚進める
                 stackCount += 1;
 
-                // ディーラーの合計ポイントを計算
+                // ディーラーの合計ポイント
                 dealerPoint = Blackjack.sumPoint(dealer);
                 // ディーラーのバーストチェック
                 if (Blackjack.isBusted(dealerPoint)) {

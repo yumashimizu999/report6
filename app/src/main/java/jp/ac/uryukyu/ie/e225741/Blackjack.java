@@ -43,7 +43,7 @@ public class Blackjack {
             return str;
         }
     }
-
+    // 絵札を10に変換
     public static int toPoint(int num) {
         if(num ==11||num == 12||num == 13) {
             num = 10;
