@@ -9,8 +9,8 @@ public class Main {
         System.out.println("<Game Start>");
 
         List<Integer> stack = new ArrayList<>();
-
-        Blackjack.shuffleStack(stack);
+        Blackjack bj = new Blackjack();
+        bj.shuffleStack(stack);
 
         // 手札リスト
         List<Integer> player = new ArrayList<>();
@@ -27,17 +27,17 @@ public class Main {
         // プレイヤーの手札の枚数
         int playerHands = 2;
 
-        System.out.println("あなたの1枚目のカードは" + Blackjack.toRank(player.get(0)));
+        System.out.println("あなたの1枚目のカードは" + bj.toRank(player.get(0)));
 
-        System.out.println("ディーラーの1枚目のカードは" + Blackjack.toRank(dealer.get(0)));
+        System.out.println("ディーラーの1枚目のカードは" + bj.toRank(dealer.get(0)));
 
-        System.out.println("あなたの2枚めのカードは" + Blackjack.toRank(player.get(1)));
+        System.out.println("あなたの2枚めのカードは" + bj.toRank(player.get(1)));
 
         System.out.println("ディーラーの2枚めのカードは秘密です。");
 
         // 合計ポイント
-        int playerPoint = Blackjack.sumPoint(player);
-        int dealerPoint = Blackjack.sumPoint(dealer);
+        int playerPoint = bj.sumPoint(player);
+        int dealerPoint = bj.sumPoint(dealer);
 
         System.out.println("あなたの現在の合計は" + playerPoint + "です。");
 
@@ -46,8 +46,8 @@ public class Main {
         while (true) {
             System.out.println("カードを追加する？Yes:y or No:n");
             // yes or noの処理
-            Scanner scan = new Scanner(System.in);
-            String str = scan.next();
+            Scanner sc = new Scanner(System.in);
+            String str = sc.next();
             if ("n".equals(str)) {
                 break;
             } else if ("y".equals(str)) {
@@ -55,11 +55,11 @@ public class Main {
                 player.add(stack.get(stackCount));
                 stackCount += 1;
                 playerHands += 1;
-                System.out.println("あなたの" + playerHands + "枚目のカードは" + Blackjack.toRank(player.get(playerHands - 1)));
-                playerPoint = Blackjack.sumPoint(player);
+                System.out.println("あなたの" + playerHands + "枚目のカードは" + bj.toRank(player.get(playerHands - 1)));
+                playerPoint = bj.sumPoint(player);
                 System.out.println("現在の合計は" + playerPoint);
                 // プレイヤーのバーストチェック
-                if (Blackjack.isBusted(playerPoint)) {
+                if (bj.isBurst(playerPoint)) {
                     System.out.println("バーストにより敗北");
                     return;
                 }
@@ -80,9 +80,9 @@ public class Main {
                 stackCount += 1;
 
                 // ディーラーの合計ポイント
-                dealerPoint = Blackjack.sumPoint(dealer);
+                dealerPoint = bj.sumPoint(dealer);
                 // ディーラーのバーストチェック
-                if (Blackjack.isBusted(dealerPoint)) {
+                if (bj.isBurst(dealerPoint)) {
                     System.out.println("バーストにより勝利");
                     return;
                 }
